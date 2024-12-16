@@ -8,7 +8,14 @@ function addExportButton() {
   button.className = 'export-button';
   button.textContent = 'Copy Data';
   
-  button.addEventListener('click', copyToClipboard);
+  // Add tooltip
+  button.title = 'Click to copy with headers\nHold Shift to copy without headers';
+  
+  button.addEventListener('click', async (e) => {
+    // If shift is held, copy without headers
+    await copyToClipboard(!e.shiftKey);
+  });
+  
   document.body.appendChild(button);
 }
 
@@ -40,10 +47,12 @@ observer.observe(document, {
   subtree: true
 });
 
-async function copyToClipboard() {
+async function copyToClipboard(includeHeaders = true) {
   // Select all table rows
   const rows = document.querySelectorAll('tr');
-  let csvContent = 'Creator\tFollowers\tAverage Views\tTotal Videos\tTotal Likes\tEngagement Rate\tCategories\tContact\n';
+  let csvContent = includeHeaders 
+    ? 'Creator\tFollowers\tAverage Views\tTotal Videos\tTotal Likes\tEngagement Rate\tCategories\tContact\n'
+    : '';
 
   // Convert each row to tab-separated format
   rows.forEach(row => {
@@ -68,7 +77,7 @@ async function copyToClipboard() {
     
     // Show success message
     const message = document.createElement('div');
-    message.textContent = 'Data copied to clipboard!';
+    message.textContent = `Data copied ${includeHeaders ? 'with' : 'without'} headers!`;
     message.style.position = 'fixed';
     message.style.top = '70px';
     message.style.right = '20px';
