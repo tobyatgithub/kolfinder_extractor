@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <!-- Background -->
+  <rect width="48" height="48" rx="6" fill="#4CAF50"/>
+  
+  <!-- Spreadsheet Grid -->
+  <rect x="9" y="9" width="30" height="18" fill="white" opacity="0.9"/>
+  <line x1="9" y1="15" x2="39" y2="15" stroke="#4CAF50" stroke-width="1"/>
+  <line x1="9" y1="21" x2="39" y2="21" stroke="#4CAF50" stroke-width="1"/>
+  <line x1="19" y1="9" x2="19" y2="27" stroke="#4CAF50" stroke-width="1"/>
+  <line x1="29" y1="9" x2="29" y2="27" stroke="#4CAF50" stroke-width="1"/>
+  
+  <!-- Download Arrow -->
+  <path d="M24 24L30 18L18 18L24 24zM24 18L24 36" stroke="white" stroke-width="4" stroke-linecap="round"/>
+</svg>

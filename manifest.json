@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "KOL Data Extractor",
+  "version": "1.0",
+  "description": "Extract creator data from KOL Find to CSV",
+  "permissions": ["activeTab", "clipboardWrite"],
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "action": {
+    "default_title": "Extract Data",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://kolfind.com/dashboard/creators*",
+        "*://*.kolfind.com/dashboard/creators*"
+      ],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_end"
+    }
+  ]
+}
