@@ -8,12 +8,24 @@ function addExportButton() {
   button.className = 'export-button';
   button.textContent = 'Copy Data';
   
-  // Add tooltip
-  button.title = 'Click to copy with headers\nHold Shift to copy without headers';
-  
   button.addEventListener('click', async (e) => {
     // If shift is held, copy without headers
     await copyToClipboard(!e.shiftKey);
+    
+    // Update button text based on the last action
+    if (e.shiftKey) {
+      button.textContent = 'Copy Data';
+      button.classList.remove('showing-hint');
+    } else {
+      button.textContent = 'Shift+Click for no headers';
+      button.classList.add('showing-hint');
+    }
+    
+    // // Reset button text after 3 seconds
+    // setTimeout(() => {
+    //   button.textContent = 'Copy Data';
+    //   button.classList.remove('showing-hint');
+    // }, 3000);
   });
   
   document.body.appendChild(button);
@@ -78,20 +90,15 @@ async function copyToClipboard(includeHeaders = true) {
     // Show success message
     const message = document.createElement('div');
     message.textContent = `Data copied ${includeHeaders ? 'with' : 'without'} headers!`;
-    message.style.position = 'fixed';
-    message.style.top = '70px';
-    message.style.right = '20px';
-    message.style.backgroundColor = '#4CAF50';
-    message.style.color = 'white';
-    message.style.padding = '10px';
-    message.style.borderRadius = '4px';
-    message.style.zIndex = '9999';
+    message.className = 'copy-notification';
     document.body.appendChild(message);
     
-    // Remove message after 2 seconds
+    // Add a fade-out animation before removing
     setTimeout(() => {
-      document.body.removeChild(message);
-    }, 2000);
+      message.style.opacity = '0';
+      message.style.transition = 'opacity 0.3s ease';
+      setTimeout(() => document.body.removeChild(message), 300);
+    }, 1700);
   } catch (err) {
     console.error('Failed to copy text: ', err);
     alert('Failed to copy data to clipboard. Please try again.');

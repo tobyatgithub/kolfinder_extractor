@@ -1,30 +1,100 @@
 .export-button {
-  position: fixed !important;
-  top: 20px !important;
-  right: 20px !important;
-  z-index: 999999 !important;
-  padding: 10px 20px !important;
-  background-color: #4CAF50 !important;
-  color: white !important;
-  border: none !important;
-  border-radius: 4px !important;
-  cursor: help !important;
-  font-size: 14px !important;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2) !important;
-  transition: background-color 0.3s !important;
-  font-family: Arial, sans-serif !important;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  z-index: 9999;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
 .export-button:hover {
-  background-color: #45a049 !important;
+  background-color: #45a049;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
 }
 
-.export-button::after {
-  content: '(Shift+Click for no headers)' !important;
-  position: absolute !important;
-  bottom: -20px !important;
-  right: 0 !important;
-  font-size: 12px !important;
-  white-space: nowrap !important;
-  color: #666 !important;
+.export-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.copy-notification {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  animation: slideIn 0.3s ease;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.export-button-hint {
+  position: absolute;
+  bottom: -30px;
+  right: 0;
+  background-color: #333;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.export-button.show-hint .export-button-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Add a small arrow to the hint */
+.export-button-hint::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  right: 20px;
+  width: 8px;
+  height: 8px;
+  background-color: #333;
+  transform: rotate(45deg);
+}
+
+/* Optional: Show hint on hover after the first time */
+.export-button:hover .export-button-hint {
+  opacity: 0.7;
+  transform: translateY(0);
+}
+
+.export-button.showing-hint {
+  font-size: 12px;
+  min-width: 160px; /* Prevent button size changes */
 }
