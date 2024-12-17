@@ -1,31 +1,30 @@
 {
   "manifest_version": 3,
-  "name": "KOL Data Extractor",
-  "version": "1.0",
-  "description": "Extract creator data from KOL Find to CSV",
-  "permissions": ["activeTab", "clipboardWrite"],
+  "name": "Table Data Copier for Kolfind",
+  "version": "1.0.0",
+  "description": "Efficiently copy table data from Kolfind.com with or without headers. Perfect for data analysts and researchers.",
+  "permissions": [
+    "clipboardWrite"
+  ],
   "icons": {
-    "16": "icon16.png",
-    "48": "icon48.png",
-    "128": "icon128.png"
-  },
-  "action": {
-    "default_title": "Extract Data",
-    "default_icon": {
-      "16": "icon16.png",
-      "48": "icon48.png",
-      "128": "icon128.png"
-    }
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
   },
   "content_scripts": [
     {
-      "matches": [
-        "*://kolfind.com/dashboard/creators*",
-        "*://*.kolfind.com/dashboard/creators*"
-      ],
+      "matches": ["*://*.kolfind.com/*"],
       "js": ["content.js"],
-      "css": ["styles.css"],
-      "run_at": "document_end"
+      "css": ["styles.css"]
     }
-  ]
+  ],
+  "author": "TobyatLarge",
+  "homepage_url": "https://github.com/tobyatgithub/kolfinder_extractor",
+  "action": {
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  }
 }
