@@ -2,6 +2,9 @@
 
 A sleek Chrome extension that allows users to efficiently copy table data with or without headers. Perfect for data analysts and anyone who needs to quickly extract tabular data.
 
+This extension is designed to work with Kolfind.com, a platform for finding job opportunities and applying to them.
+![kolfind dashboard](dashboard.png)
+
 ## Features
 
 - 🚀 One-click data copying
@@ -12,7 +15,7 @@ A sleek Chrome extension that allows users to efficiently copy table data with o
 
 ## Usage
 
-1. Click the "Copy Data" button to copy table data with headers
+1. Click the "Copy Data" button to copy table data with headers (should show up on the top right of the table)
 2. Hold Shift while clicking to copy data without headers
 3. A notification will confirm successful copying
 4. The button text updates to guide you through different copying options
